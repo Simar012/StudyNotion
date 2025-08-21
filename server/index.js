@@ -21,7 +21,7 @@ const fileupload = require('express-fileupload')
 dbconnect();
 
 app.use(cors({
-    origin: ["http://localhost:3000","https://studynotion-v2.netlify.app/"],
+    origin: ["http://localhost:3000","https://studynotion-v2.netlify.app"],
     credentials: true,
 }))
 
