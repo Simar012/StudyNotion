@@ -13,7 +13,7 @@ const Instructor = () => {
     const{token} = useSelector((state) => state.auth);
     const{user} = useSelector((state) => state.profile);
 
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         const getCourseDataWithStats = async() => {
             setloading(true);
@@ -87,7 +87,7 @@ const Instructor = () => {
                 {
                     courses.slice(0,3).map((course) => (
                         <div key={course._id}>
-                            <img src={course.thumbnail}
+                            <img src={course.thumbnail} alt='thumbnail'
                                 className='h-[201px] w-full rounded-md object-cover'
                             />
                             <div className=' mt-3 w-full'>

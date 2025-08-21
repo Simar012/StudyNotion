@@ -3,7 +3,6 @@ import React from "react"
 import Footer from "../components/common/Footer"
 import ContactDetails from "../components/ContactPage/ContactDetails"
 import ContactForm from "../components/ContactPage/ContactForm"
-import ReviewSlider from "../components/common/ReviewSlider"
 
 const Contact = () => {
   return (

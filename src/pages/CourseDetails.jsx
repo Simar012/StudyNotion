@@ -49,7 +49,7 @@ function CourseDetails() {
      const courseDetails = response?.data?.courseDetails || response?.data?.[0] || {};
 
     const {
-        _id: course_id,
+        // _id: course_id,
         courseName,
         courseDescription,
         thumbnail,
@@ -82,7 +82,7 @@ function CourseDetails() {
         setIsActive(
             !isActive.includes(id)
                 ? isActive.concat([id])
-                : isActive.filter((e) => e != id)
+                : isActive.filter((e) => e !== id)
         )
     }
 

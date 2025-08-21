@@ -25,30 +25,8 @@ const VideoDetails = () => {
     const [videoEnded, setVideoEnded] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    //   useEffect(() => {
-    //     ;(async () => {
-    //       if (!courseSectionData.length) return
-    //       if (!courseId && !sectionId && !subSectionId) {
-    //         navigate(`/dashboard/enrolled-courses`)
-    //       } else {
-    //         // console.log("courseSectionData", courseSectionData)
-    //         const filteredData = courseSectionData.filter(
-    //           (course) => course._id === sectionId
-    //         )
-    //         // console.log("filteredData", filteredData)
-    //         const filteredVideoData = filteredData?.[0]?.subSection.filter(
-    //           (data) => data._id === subSectionId
-    //         )
-    //         // console.log("filteredVideoData", filteredVideoData)
-    //         setVideoData(filteredVideoData[0])
-    //         setPreviewSource(courseEntireData.thumbnail)
-    //         setVideoEnded(false)
-    //       }
-    //     })()
-    //   }, [courseSectionData, courseEntireData, location.pathname])
 
-    // check if the lecture is the first video of the course
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (!courseSectionData.length) return
 
