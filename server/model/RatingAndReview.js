@@ -1,0 +1,25 @@
+const mongoose = require('mongoose')
+
+const RatingAndReviewSchema = new mongoose.Schema({
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        required:true,  
+        ref: "User",
+    },
+    rating:{
+        type: Number,
+        required:true,  
+    },
+    review:{
+        type: String,
+        required:true,  
+    },
+    course: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: true,
+		ref: "Course",
+		index: true, // It helps speed up queries that filter or sort by this field.
+	},
+})
+
+module.exports = mongoose.model("RatingAndReview", RatingAndReviewSchema)

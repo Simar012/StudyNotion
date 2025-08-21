@@ -1,0 +1,68 @@
+# --------------------
+# Node dependencies
+# --------------------
+node_modules/
+server/node_modules/
+
+# --------------------
+# Environment variables
+# --------------------
+.env
+.env.local
+.env.development
+.env.production
+server/.env
+server/.env.local
+server/.env.development
+server/.env.production
+
+# --------------------
+# Build / Dist files
+# --------------------
+# Frontend build
+build/
+dist/
+
+# --------------------
+# Logs
+# --------------------
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --------------------
+# Cache
+# --------------------
+.cache/
+.next/
+out/
+
+# --------------------
+# Test coverage
+# --------------------
+coverage/
+
+# --------------------
+# System / Editor files
+# --------------------
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# --------------------
+# Optional lock files (if not tracking)
+# --------------------
+# Uncomment if you don't want lock files committed
+# package-lock.json
+# server/package-lock.json
+# yarn.lock
+
+# --------------------
+# Platform-specific (Render/Netlify/Vercel)
+# --------------------
+.vercel
+.netlify
