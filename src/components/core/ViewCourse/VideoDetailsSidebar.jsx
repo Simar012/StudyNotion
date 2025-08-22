@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'; 
 import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import { useEffect } from 'react';
 import IconBtn from '../../common/IconBtn'
 import {FaChevronLeft} from 'react-icons/fa'
@@ -18,6 +18,7 @@ const VideoDetailsSidebar = ({setReviewModal}) => {
   // console.log(courseSectionData);
   const navigate = useNavigate();
   const[showSidebar, setShowSidebar] = useState(false);
+    const location = useLocation()
 
   useEffect(() => {
     ;(() => {
@@ -33,7 +34,7 @@ const VideoDetailsSidebar = ({setReviewModal}) => {
       // console.log("activeSubsectionId", activesubsectionId);
       // console.log("activeSectionId", courseSectionData[currentSectionIndex]._id);
     })();
-  }, [courseSectionData, sectionId, subsectionId]);
+  }, [courseSectionData, sectionId, subsectionId, courseEntireData, location.pathname]);
 
 
 
@@ -57,7 +58,7 @@ const VideoDetailsSidebar = ({setReviewModal}) => {
             <IconBtn text={"Review"} onclick={()=>{setReviewModal(true)}}/>
           </div>
           <div className='flex flex-col'>
-            <p>My Courses</p>
+            <p>{courseEntireData?.courseName}</p>
             <p className='text-sm font-semibold text-richblack-500'>
               {completedLectures?.length} of {totalNoOfLectures} Lectures Completed
             </p>
@@ -80,7 +81,8 @@ const VideoDetailsSidebar = ({setReviewModal}) => {
                     <div  key={subSection?._id} className='transition-[height] duration-500 ease-in-out'>
                       <div onClick={()=>{
                         setShowSidebar(true);
-                        navigate(`/dashboard/enrolled-courses/view-course/${courseId}/section/${section?._id}/sub-section/${subSection?._id}`);
+                        navigate(`/view-course/${courseEntireData?._id}/section/${section?._id}/sub-section/${subSection?._id}`)
+                        setVideoActive(subSection._id)
                       }} className={`${subSection?._id === videoActive? ("bg-yellow-200"):("bg-richblack-50") } cursor-pointer items-baseline  flex gap-3  px-5 py-2 font-semibold text-richblack-800 relative border-b-[1px] border-richblack-600 `}>
                       {/* <input type='checkbox' className=' '/> */}
                       <div className="checkbox-wrapper-19 absolute bottom-1">
