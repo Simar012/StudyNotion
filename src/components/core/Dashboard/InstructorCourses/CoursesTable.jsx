@@ -1,6 +1,7 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table"
 
+import { setCourse, setEditCourse } from "../../../../slices/courseSlice"
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css"
 import { useState } from "react"
 import { FaCheck } from "react-icons/fa"
@@ -18,6 +19,7 @@ import { COURSE_STATUS } from "../../../../utils/constants"
 import ConfirmationModal from "../../../common/ConfirmationModal"
 
 export default function CoursesTable({ courses, setCourses }) {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const { token } = useSelector((state) => state.auth)
   const [loading, setLoading] = useState(false)
@@ -37,17 +39,24 @@ export default function CoursesTable({ courses, setCourses }) {
 
   // console.log("All Course ", courses)
 
+  if(loading) {
+    return (
+        <div className="custom-loader"></div>
+    )
+    }
+
+
   return (
     <>
       <Table className="rounded-xl border border-richblack-800 ">
-        <Thead>
-          <Tr className="flex gap-x-10 rounded-t-md border-b border-b-richblack-800 px-6 py-2">
+        <Thead >
+          <Tr className="flex gap-x-10 rounded-t-md border-b border-b-richblack-800 px-6 py-2 text-richblack-100">
             <Th className="flex-1 text-left text-sm font-medium uppercase text-richblack-100">
               Courses
             </Th>
-            <Th className="text-left text-sm font-medium uppercase text-richblack-100">
+            {/* <Th className="text-left text-sm font-medium uppercase text-richblack-100">
               Duration
-            </Th>
+            </Th> */}
             <Th className="text-left text-sm font-medium uppercase text-richblack-100">
               Price
             </Th>
@@ -67,21 +76,21 @@ export default function CoursesTable({ courses, setCourses }) {
           ) : (
             courses?.map((course) => (
               <Tr
-                key={course._id}
-                className="flex gap-x-10 border-b border-richblack-800 px-6 py-8"
+                key={course?._id}
+                className="flex gap-x-10 border-b border-richblack-800 px-6 py-8 gap-4"
               >
-                <Td className="flex flex-1 gap-x-4">
+                <Td colSpan={1}  className="flex flex-1 gap-x-4 p-3">
                   <img
                     src={course?.thumbnail}
                     alt={course?.courseName}
-                    className="h-[148px] w-[220px] rounded-lg object-cover"
+                    className="md:h-[148px] md:w-[220px] aspect-video rounded-lg object-cover"
                   />
-                  <div className="flex flex-col justify-between">
-                    <p className="text-lg font-semibold text-richblack-5">
+                  <div className="flex flex-col gap-1 justify-between">
+                    <p className="text-lg font-semibold text-richblack-5 mt-3">
                       {course.courseName}
                     </p>
                     <p className="text-xs text-richblack-300">
-                      {course.courseDescription.split(" ").length >
+                      {course?.courseDescription.split(" ")?.length >
                       TRUNCATE_LENGTH
                         ? course.courseDescription
                             .split(" ")
@@ -90,7 +99,7 @@ export default function CoursesTable({ courses, setCourses }) {
                         : course.courseDescription}
                     </p>
                     <p className="text-[12px] text-white">
-                      Created: {formatDate(course.createdAt)}
+                      Created: {formatDate(course?.createdAt || course?.updatedAt)}
                     </p>
                     {course.status === COURSE_STATUS.DRAFT ? (
                       <p className="flex w-fit flex-row items-center gap-2 rounded-full bg-richblack-700 px-2 py-[2px] text-[12px] font-medium text-pink-100">
@@ -107,20 +116,20 @@ export default function CoursesTable({ courses, setCourses }) {
                     )}
                   </div>
                 </Td>
-                <Td className="text-sm font-medium text-richblack-100">
-                  2hr 30min
-                </Td>
-                <Td className="text-sm font-medium text-richblack-100">
+                {/* <Td className="text-sm font-medium text-richblack-100">
+                  6hr 30min
+                </Td> */}
+                <Td className="text-sm font-medium text-richblack-100 mb-5">
                   ₹{course.price}
                 </Td>
                 <Td className="text-sm font-medium text-richblack-100 ">
                   <button
                     disabled={loading}
                     onClick={() => {
-                      navigate(`/dashboard/edit-course/${course._id}`)
+                      navigate(`/dashboard/edit-course/${course._id}`);
                     }}
                     title="Edit"
-                    className="px-2 transition-all duration-200 hover:scale-110 hover:text-caribbeangreen-300"
+                    className="px-2 transition-all duration-200 hover:scale-110 hover:text-caribbeangreen-300 mr- mb-"
                   >
                     <FiEdit2 size={20} />
                   </button>

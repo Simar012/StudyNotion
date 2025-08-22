@@ -88,16 +88,17 @@ const Instructor = () => {
                                     <div className=' my-4 flex items-start space-x-6'>
                                         {
                                             courses.slice(0, 3).map((course) => (
-                                                <div key={course._id}>
+                                                <div key={course._id} className='w-1/3'>
                                                     <img src={course.thumbnail} alt='thumbnail'
-                                                        className='h-[201px] w-full rounded-md object-cover'
+                                                        className=' aspect-video md:h-[201px] w-full rounded-md object-cover'
                                                     />
                                                     <div className=' mt-3 w-full'>
                                                         <p className=' text-sm font-medium text-richblack-50'>{course.courseName}</p>
-                                                        <div className=' mt-1 flex items-center space-x-2'>
-                                                            <p className=' text-xs font-medium text-richblack-300'>{course.studentsEnrolled.length} students</p>
-                                                            <p className=' text-xs font-medium text-richblack-300'> | </p>
-                                                            <p className=' text-xs font-medium text-richblack-300'>Rs {course.price} </p>
+                                                        <div className='mt-1  md:space-x-2 md:flex'>
+                                                            <p className='text-xs font-medium text-richblack-300'>{course?.studentsEnrolled?.length} Students
+                                                            </p>
+                                                            <p className='hidden md:block text-xs font-medium text-richblack-300'>|</p>
+                                                            <p className='text-xs font-medium text-richblack-300'>₹ {course?.price}</p>
                                                         </div>
                                                     </div>
                                                 </div>

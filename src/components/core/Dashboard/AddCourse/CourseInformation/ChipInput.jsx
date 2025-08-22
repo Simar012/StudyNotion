@@ -94,6 +94,13 @@ export default function ChipInput({
           placeholder={placeholder}
           onKeyDown={handleKeyDown}
           className="form-style w-full"
+          onBlur={(e) => {
+            const chipValue = e.target.value.trim()
+            if (chipValue && !chips.includes(chipValue)) {
+              setChips([...chips, chipValue])
+              e.target.value = ""
+            }
+          }}
         />
       </div>
       {/* Render an error message if the input is required and not filled */}
