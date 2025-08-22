@@ -32,16 +32,16 @@ const timeline = [
 const TimelineSection = () => {
   return (
     <div>
-      <div className='flex flex-row gap-15 items-center'>
+      <div className='flex flex-row gap-15 items-center  max-[640px]:flex-col  '>
 
-        <div className='w-[45%] flex flex-col gap-5'>
+        <div className='w-[45%] flex flex-col gap-5 max-[640px]:w-[85%]'>
             {
                 timeline.map( (element, index) => {
                     return (
                         <div className='flex flex-row gap-6' key={index}>
 
                             <div className='w-[50px] h-[50px] bg-white flex items-center'>
-                                <img src={element.Logo} alt='Logo' />
+                                <img src={element.Logo} alt='logo' />
                             </div>
 
                             <div>
@@ -54,7 +54,7 @@ const TimelineSection = () => {
                 } )
             }
         </div>
-        <div className='relative shadow-blue-200'>
+        <div className='relative shadow-blue-200 max-[640px]:w-[85%] max-[640px]:mt-6'>
 
             <img  src={timelineImage}
             alt="timelineImage"
@@ -62,7 +62,7 @@ const TimelineSection = () => {
             />
 
             <div className='absolute bg-caribbeangreen-700 flex flex-row text-white uppercase py-7
-                            left-[50%] translate-x-[-50%] translate-y-[-50%]'>
+                            left-[50%] translate-x-[-50%] translate-y-[-50%] max-[450px]:opacity-0'>
                 <div className='flex flex-row gap-5 items-center border-r border-caribbeangreen-300 px-7'>
                     <p className='text-3xl font-bold'>10</p>
                     <p className='text-caribbeangreen-300 text-sm'>Years of Experience</p>
@@ -70,7 +70,7 @@ const TimelineSection = () => {
 
                 <div className='flex gap-5 items-center px-7'>
                 <p className='text-3xl font-bold'>250</p>
-                    <p className='text-caribbeangreen-300 text-sm'>TYpe of Courses</p>
+                    <p className='text-caribbeangreen-300 text-sm'>Type of Courses</p>
                 </div>
 
             </div>

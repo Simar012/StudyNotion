@@ -3,7 +3,6 @@ import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai"
 import { BsChevronDown } from "react-icons/bs"
 import { useSelector } from "react-redux"
 import { Link, matchPath, useLocation } from "react-router-dom"
-
 import logo from "../../assets/Logo/Logo-Full-Light.png"
 import { NavbarLinks } from "../../data/navbar-links"
 import { apiConnector } from "../../services/apiconnector"
@@ -11,7 +10,7 @@ import { categories } from "../../services/apis"
 import { ACCOUNT_TYPE } from "../../utils/constants"
 import ProfileDropdown from "../core/Auth/ProfileDropDown"
 
-function Navbar() {
+function Navbar({open,setopen}) {
   const { token } = useSelector((state) => state.auth)
   const { user } = useSelector((state) => state.profile)
   const { totalItems } = useSelector((state) => state.cart)
@@ -19,6 +18,8 @@ function Navbar() {
 
   const [subLinks, setSubLinks] = useState([])
   const [loading, setLoading] = useState(false)
+  console.log("Sub Links",subLinks);
+
 
   useEffect(() => {
     ;(async () => {
@@ -74,7 +75,7 @@ function Navbar() {
                           <>
                             {subLinks
                               ?.filter(
-                                (subLink) => subLink?.course?.length > 0
+                                (subLink) => subLink?.courses?.length > 0
                               )
                               ?.map((subLink, i) => (
                                 <Link
@@ -140,7 +141,7 @@ function Navbar() {
           )}
           {token !== null && <ProfileDropdown />}
         </div>
-        <button className="mr-4 md:hidden">
+        <button className="mr-4 md:hidden" onClick={() => setopen(!open)}>
           <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
         </button>
       </div>

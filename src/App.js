@@ -29,15 +29,20 @@ import ViewCourse from "./pages/ViewCourse";
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import Help from "./components/core/Dashboard/Help";
 import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
+import Menu from "./components/common/Menu";
+import { useState } from "react";
 
 function App() {
 
   const { user } = useSelector((state) => state.profile)
-
+  const[open,setopen] = useState(false);
 
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
-      <Navbar />
+      <Navbar open={open} setopen={setopen}/>
+      {
+        open && <Menu open={open} setopen={setopen}/>
+      }
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="catalog/:catalogName" element={<Catalog />} />
